@@ -15,8 +15,6 @@ jobs:
 
       - name: Build APK
         run: |
-          # If gradlew is in the root, this works. 
-          # If it is inside /app, change the line below to 'cd app'
           chmod +x gradlew
           ./gradlew assembleDebug
         working-directory: .
@@ -25,5 +23,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Catta-Build
-          path: app/build/outputs/apk/debug/catta.apk
+          # This path is the most reliable for finding the renamed APK
+          path: "**/build/outputs/apk/debug/catta.apk"
           
