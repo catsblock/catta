@@ -10,13 +10,17 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+      
+      - name: Build APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+        # Ensures it finds gradlew in the root or app folder as per your structure
+        working-directory: .
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Catta-Build
-          path: app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/debug/catta.apk
           
