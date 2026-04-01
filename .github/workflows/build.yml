@@ -15,12 +15,16 @@ jobs:
 
       - name: Build APK
         run: |
+          # Grant permissions and build
           chmod +x gradlew
           ./gradlew assembleDebug
-          # Find any APK and move it to the root as catta.apk
-          find . -name "*.apk" -exec cp {} ./catta.apk \;
-          # List files to verify it exists
-          ls -R
+          
+          # Find the generated APK and copy it to the root as catta.apk
+          # This works even if the APK is in app/build/outputs/apk/debug/
+          find . -name "*.apk" -type f -exec cp {} ./catta.apk \;
+          
+          # Verify the file is in the root
+          ls -lh catta.apk
         working-directory: .
 
       - name: Upload Artifact
