@@ -17,14 +17,16 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
-          # Smart find: finds the generated debug APK and renames it to catta.apk
-          find . -name "*-debug.apk" -exec mv {} ./catta.apk \;
+          # Find any APK and move it to the root as catta.apk
+          find . -name "*.apk" -exec cp {} ./catta.apk \;
+          # List files to verify it exists
+          ls -R
         working-directory: .
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Catta-Build
-          # Now the APK is in the root folder because of the 'mv' command above
           path: catta.apk
+          if-no-files-found: error
           
