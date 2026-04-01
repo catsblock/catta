@@ -15,22 +15,14 @@ jobs:
 
       - name: Build APK
         run: |
-          # Grant permissions and build
           chmod +x gradlew
           ./gradlew assembleDebug
-          
-          # Find the generated APK and copy it to the root as catta.apk
-          # This works even if the APK is in app/build/outputs/apk/debug/
-          find . -name "*.apk" -type f -exec cp {} ./catta.apk \;
-          
-          # Verify the file is in the root
-          ls -lh catta.apk
         working-directory: .
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Catta-Build
-          path: catta.apk
-          if-no-files-found: error
+          name: Catta-Debug-APK
+          # This is the default location for every Android project
+          path: app/build/outputs/apk/debug/app-debug.apk
           
