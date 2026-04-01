@@ -17,12 +17,13 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
+          # Manual rename to ensure the file is named catta.apk
+          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/catta.apk
         working-directory: .
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Catta-Build
-          # This path is the most reliable for finding the renamed APK
-          path: "**/build/outputs/apk/debug/catta.apk"
+          path: app/build/outputs/apk/debug/catta.apk
           
