@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Catta</string>
+    <string name="loading">Loading: %1$s</string>
+    <string name="shizuku_error">You must install Shizuku and grant permissions to Catta to proceed.</string>
+    <string name="system_warning">Are you sure? This app is part of the system.</string>
+    <string name="confirm_single">Are you sure you want to uninstall this app?</string>
+    <string name="confirm_multi">Are you sure you\'re uninstalling %1$d apps?</string>
+    <string name="uninstalling">Uninstalling...</string>
+    <string name="success">The app has been successfully uninstalled! If you want to recover an app, you can go to Recovery.</string>
+</resources>
+
