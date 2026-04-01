@@ -17,14 +17,6 @@ android {
 
     buildFeatures { compose = true }
     composeOptions { kotlinCompilerExtensionVersion = "1.5.1" }
-
-    // Logic to rename the APK file to catta.apk
-    applicationVariants.all {
-        outputs.all {
-            val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-            output.outputFileName = "catta.apk"
-        }
-    }
 }
 
 dependencies {
