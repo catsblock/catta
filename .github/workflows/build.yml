@@ -14,13 +14,13 @@ jobs:
 
       - name: Force Build
         run: |
-          # This command starts the compilation
-          gradle assembleDebug --stacktrace
+          # The --continue ensures we see every error if it fails
+          gradle assembleDebug --stacktrace --continue
         working-directory: .
 
-      - name: Upload Artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Catta-Release
-          path: "**/*.apk"
+          path: "**/build/outputs/apk/debug/*.apk"
           
