@@ -14,13 +14,18 @@ jobs:
 
       - name: Force Build
         run: |
-          # The --continue ensures we see every error if it fails
-          gradle assembleDebug --stacktrace --continue
+          # Use system gradle and skip the wrapper if it's broken
+          gradle assembleDebug --stacktrace
+          
+          # This will show you exactly where the APK is in the logs
+          echo "Listing all generated APKs:"
+          find . -name "*.apk"
         working-directory: .
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Catta-Release
-          path: "**/build/outputs/apk/debug/*.apk"
+          # Using the wildcard to grab the file from the subfolders
+          path: "app/build/outputs/apk/debug/*.apk"
           
