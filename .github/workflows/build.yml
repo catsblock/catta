@@ -14,14 +14,13 @@ jobs:
 
       - name: Force Build
         run: |
-          # Use system gradle to avoid wrapper errors
+          # This command starts the compilation
           gradle assembleDebug --stacktrace
         working-directory: .
 
-      - name: Upload APK
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Catta-Release
-          # This finds the APK wherever the server put it
           path: "**/*.apk"
           
